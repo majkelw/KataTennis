@@ -27,18 +27,22 @@ public class SimplifiedTennisGame {
 
 
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
-        if (firstPlayerScore < 0 || secondPlayerScore < 0)
-            throw new IncorrectScore("Score can not be less than zero");
-        if (firstPlayerScore > MIN_POINTS_WIN || secondPlayerScore > MIN_POINTS_WIN) {
-            if (Math.abs(firstPlayerScore - secondPlayerScore) > MIN_ADVANTAGE_WIN)
-                throw new IncorrectScore("Difference between scores is wrong");
-        }
+        validateScores(firstPlayerScore, secondPlayerScore);
         if (firstPlayerScore == secondPlayerScore)
             verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
         else if (firstPlayerScore >= MIN_POINTS_WIN || secondPlayerScore >= MIN_POINTS_WIN)
             verbalScore = findComplexVerbal(firstPlayerScore, secondPlayerScore);
         else
             verbalScore = findStandardFit(firstPlayerScore) + ", " + findStandardFit(secondPlayerScore);
+
+    }
+
+    private void validateScores(int firstPlayerScore, int secondPlayerScore) {
+        if (firstPlayerScore < 0 || secondPlayerScore < 0)
+            throw new IncorrectScore("Score can not be less than zero");
+        if ((firstPlayerScore > MIN_POINTS_WIN || secondPlayerScore > MIN_POINTS_WIN) &&
+                Math.abs(firstPlayerScore - secondPlayerScore) > MIN_ADVANTAGE_WIN)
+            throw new IncorrectScore("Difference between scores is wrong");
 
     }
 
