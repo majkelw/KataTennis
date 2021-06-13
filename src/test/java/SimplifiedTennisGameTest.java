@@ -34,17 +34,24 @@ public class SimplifiedTennisGameTest {
     }
 
     @Test
-    public void scoreShouldBeDeuce(){
+    public void scoreShouldBeDeuce() {
         SimplifiedTennisGame game = new SimplifiedTennisGame();
         game.createScore(3, 3);
         assertThat(game.getVerbalScore(), equalTo("Deuce"));
     }
 
     @Test
-    public void scoreShouldBeGameForSecondPlayer(){
+    public void scoreShouldBeGameForSecondPlayer() {
         SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
         game.createScore(2, 4);
         assertThat(game.getVerbalScore(), equalTo("Game Davis"));
+    }
+
+    @Test
+    public void scoreShouldBeAdvantageForFirstPlayer() {
+        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
+        game.createScore(4, 3);
+        assertThat(game.getVerbalScore(), equalTo("Advantage Smith"));
     }
 
 }
