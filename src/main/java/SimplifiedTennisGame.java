@@ -16,6 +16,10 @@ public class SimplifiedTennisGame {
             return "Love";
         else if (score == 1)
             return "Fifteen";
+        else if (score == 2)
+            return "Thirty";
+        else if (score == 3)
+            return "Forty";
 
         return null;
     }
