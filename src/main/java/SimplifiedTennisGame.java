@@ -25,13 +25,17 @@ public class SimplifiedTennisGame {
         return null;
     }
 
+
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
 
         if (firstPlayerScore == 0 && secondPlayerScore == 0)
             verbalScore = INITIAL_VERBAL_SCORE;
-        else if (firstPlayerScore == secondPlayerScore)
-            verbalScore = findMatch(firstPlayerScore)+" all";
-        else
+        else if (firstPlayerScore == secondPlayerScore) {
+            if (firstPlayerScore >= 3)
+                verbalScore = "Deuce";
+            else
+                verbalScore = findMatch(firstPlayerScore) + " all";
+        } else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
     }
 }
