@@ -2,8 +2,11 @@ import java.util.Arrays;
 
 public class SimplifiedTennisGame {
 
-    public static final String INITIAL_VERBAL_SCORE = "Love all";
-    public static final String DEUCE = "Deuce";
+    private static final String INITIAL_VERBAL_SCORE = "Love all";
+    private static final String DEUCE = "Deuce";
+    private static final int MIN_POINTS_WIN = 4;
+    private static final int MIN_ADVANTAGE_WIN = 2;
+
     private final String firstPlayer;
     private final String secondPlayer;
     private String verbalScore;
@@ -22,7 +25,42 @@ public class SimplifiedTennisGame {
         return verbalScore;
     }
 
-    private String findMatch(int score) {
+
+    public void createScore(int firstPlayerScore, int secondPlayerScore) {
+
+        if (firstPlayerScore == secondPlayerScore)
+            verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
+        else if (firstPlayerScore == MIN_POINTS_WIN || secondPlayerScore == MIN_POINTS_WIN)
+            verbalScore = findComplexVerbal(firstPlayerScore, secondPlayerScore);
+        else
+            verbalScore = findStandardFit(firstPlayerScore) + ", " + findStandardFit(secondPlayerScore);
+
+    }
+
+    private String findComplexVerbal(int firstPlayerScore, int secondPlayerScore) {
+
+        String currentlyBetterPlayer;
+
+        if (firstPlayerScore > secondPlayerScore)
+            currentlyBetterPlayer = firstPlayer;
+        else currentlyBetterPlayer = secondPlayer;
+
+        String lastName = Arrays.stream(currentlyBetterPlayer.split(" ")).toArray()[1].toString();
+        if (Math.abs(firstPlayerScore - secondPlayerScore) == MIN_ADVANTAGE_WIN)
+            return "Game " + lastName;
+
+        return "Advantage " + lastName;
+    }
+
+    private String findVerbalWhenScoresAreEqual(int score) {
+        if (score == 0)
+            return INITIAL_VERBAL_SCORE;
+        if (score >= MIN_POINTS_WIN - 1)
+            return DEUCE;
+        return verbalScore = findStandardFit(score) + " all";
+    }
+
+    private String findStandardFit(int score) {
         switch (score) {
             case 0:
                 return "Love";
@@ -34,36 +72,5 @@ public class SimplifiedTennisGame {
                 return "Forty";
         }
         return null;
-    }
-
-
-    public void createScore(int firstPlayerScore, int secondPlayerScore) {
-
-        if (firstPlayerScore == secondPlayerScore)
-            verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
-        else if (firstPlayerScore == 4 || secondPlayerScore == 4)
-            verbalScore = findComplexVerbal(firstPlayerScore, secondPlayerScore);
-        else
-            verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
-
-    }
-
-    private String findComplexVerbal(int firstPlayerScore, int secondPlayerScore) {
-        int difference = Math.abs(firstPlayerScore - secondPlayerScore);
-        String currentlyBetterPlayer;
-        if (firstPlayerScore > secondPlayerScore)
-            currentlyBetterPlayer = firstPlayer;
-        else currentlyBetterPlayer = secondPlayer;
-        if (difference == 2)
-            return "Game " + Arrays.stream(currentlyBetterPlayer.split(" ")).toArray()[1];
-        return "Advantage " + Arrays.stream(currentlyBetterPlayer.split(" ")).toArray()[1];
-    }
-
-    private String findVerbalWhenScoresAreEqual(int score) {
-        if (score == 0)
-            return INITIAL_VERBAL_SCORE;
-        if (score >= 3)
-            return DEUCE;
-        return verbalScore = findMatch(score) + " all";
     }
 }
