@@ -1,6 +1,9 @@
+import org.graalvm.compiler.debug.Assertions;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.hamcrest.Matchers.equalTo;
 
 public class SimplifiedTennisGameTest {
@@ -59,5 +62,11 @@ public class SimplifiedTennisGameTest {
         SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
         game.createScore(10, 11);
         assertThat(game.getVerbalScore(), equalTo("Advantage Davis"));
+    }
+
+    @Test
+    public void shouldThrowIncorrectScoreException_whenScoreIsLessThanZero() {
+        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
+        assertThrows(IncorrectScore.class, () -> game.createScore(-10, 0));
     }
 }
