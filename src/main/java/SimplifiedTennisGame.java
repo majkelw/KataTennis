@@ -12,15 +12,16 @@ public class SimplifiedTennisGame {
     }
 
     private String findMatch(int score) {
-        if (score == 0)
-            return "Love";
-        else if (score == 1)
-            return "Fifteen";
-        else if (score == 2)
-            return "Thirty";
-        else if (score == 3)
-            return "Forty";
-
+        switch (score) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+        }
         return null;
     }
 
@@ -28,8 +29,7 @@ public class SimplifiedTennisGame {
 
         if (firstPlayerScore == 0 && secondPlayerScore == 0)
             verbalScore = INITIAL_VERBAL_SCORE;
-        else {
+        else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
-        }
     }
 }
