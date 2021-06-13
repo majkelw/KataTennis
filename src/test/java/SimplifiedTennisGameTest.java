@@ -25,4 +25,11 @@ public class SimplifiedTennisGameTest {
         game.createScore(3, 2);
         assertThat(game.getVerbalScore(), equalTo("Forty, Thirty"));
     }
+
+    @Test
+    public void scoreShouldBeFifteenAll() {
+        SimplifiedTennisGame game = new SimplifiedTennisGame();
+        game.createScore(1, 1);
+        assertThat(game.getVerbalScore(), equalTo("Fifteen all"));
+    }
 }
