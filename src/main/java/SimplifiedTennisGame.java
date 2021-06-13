@@ -32,8 +32,6 @@ public class SimplifiedTennisGame {
                 return "Thirty";
             case 3:
                 return "Forty";
-            case 4:
-                return "Game";
         }
         return null;
     }
@@ -41,9 +39,7 @@ public class SimplifiedTennisGame {
 
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
 
-        if (firstPlayerScore == 0 && secondPlayerScore == 0)
-            verbalScore = INITIAL_VERBAL_SCORE;
-        else if (firstPlayerScore == secondPlayerScore) {
+        if (firstPlayerScore == secondPlayerScore) {
             verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
         } else if (firstPlayerScore == 4) {
             verbalScore = "Game " + Arrays.stream(firstPlayer.split(" ")).toArray()[1];
@@ -51,11 +47,14 @@ public class SimplifiedTennisGame {
             verbalScore = "Game " + Arrays.stream(secondPlayer.split(" ")).toArray()[1];
         } else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
+
     }
 
-    private String findVerbalWhenScoresAreEqual(int firstPlayerScore) {
-        if (firstPlayerScore >= 3)
+    private String findVerbalWhenScoresAreEqual(int score) {
+        if (score == 0)
+            return INITIAL_VERBAL_SCORE;
+        if (score >= 3)
             return DEUCE;
-        return verbalScore = findMatch(firstPlayerScore) + " all";
+        return verbalScore = findMatch(score) + " all";
     }
 }
