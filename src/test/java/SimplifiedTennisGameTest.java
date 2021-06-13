@@ -54,4 +54,10 @@ public class SimplifiedTennisGameTest {
         assertThat(game.getVerbalScore(), equalTo("Advantage Smith"));
     }
 
+    @Test
+    public void test() {
+        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
+        game.createScore(10, 11);
+        assertThat(game.getVerbalScore(), equalTo("Advantage Davis"));
+    }
 }
