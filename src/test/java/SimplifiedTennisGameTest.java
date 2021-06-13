@@ -69,4 +69,10 @@ public class SimplifiedTennisGameTest {
         SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
         assertThrows(IncorrectScore.class, () -> game.createScore(-10, 0));
     }
+
+    @Test
+    public void shouldThrowIncorrectScoreException_whenDifferenceBetweenScoresIsWrong() {
+        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
+        assertThrows(IncorrectScore.class, () -> game.createScore(5, 10));
+    }
 }
