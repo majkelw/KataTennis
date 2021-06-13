@@ -55,7 +55,7 @@ public class SimplifiedTennisGameTest {
     }
 
     @Test
-    public void test() {
+    public void scoreShouldBeAdvantageForSecondPlayer() {
         SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
         game.createScore(10, 11);
         assertThat(game.getVerbalScore(), equalTo("Advantage Davis"));

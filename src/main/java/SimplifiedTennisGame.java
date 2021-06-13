@@ -30,7 +30,7 @@ public class SimplifiedTennisGame {
 
         if (firstPlayerScore == secondPlayerScore)
             verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
-        else if (firstPlayerScore == MIN_POINTS_WIN || secondPlayerScore == MIN_POINTS_WIN)
+        else if (firstPlayerScore >= MIN_POINTS_WIN || secondPlayerScore >= MIN_POINTS_WIN)
             verbalScore = findComplexVerbal(firstPlayerScore, secondPlayerScore);
         else
             verbalScore = findStandardFit(firstPlayerScore) + ", " + findStandardFit(secondPlayerScore);
