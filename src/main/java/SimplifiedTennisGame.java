@@ -29,6 +29,8 @@ public class SimplifiedTennisGame {
 
         if (firstPlayerScore == 0 && secondPlayerScore == 0)
             verbalScore = INITIAL_VERBAL_SCORE;
+        else if (firstPlayerScore == secondPlayerScore)
+            verbalScore = findMatch(firstPlayerScore)+" all";
         else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
     }
