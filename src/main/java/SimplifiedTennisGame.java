@@ -39,15 +39,24 @@ public class SimplifiedTennisGame {
 
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
 
-        if (firstPlayerScore == secondPlayerScore) {
+        if (firstPlayerScore == secondPlayerScore)
             verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
-        } else if (firstPlayerScore == 4) {
-            verbalScore = "Game " + Arrays.stream(firstPlayer.split(" ")).toArray()[1];
-        } else if (secondPlayerScore == 4) {
-            verbalScore = "Game " + Arrays.stream(secondPlayer.split(" ")).toArray()[1];
-        } else
+        else if (firstPlayerScore == 4 || secondPlayerScore == 4)
+            verbalScore = findComplexVerbal(firstPlayerScore, secondPlayerScore);
+        else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
 
+    }
+
+    private String findComplexVerbal(int firstPlayerScore, int secondPlayerScore) {
+        int difference = Math.abs(firstPlayerScore - secondPlayerScore);
+        String currentlyBetterPlayer;
+        if (firstPlayerScore > secondPlayerScore)
+            currentlyBetterPlayer = firstPlayer;
+        else currentlyBetterPlayer = secondPlayer;
+        if (difference == 2)
+            return "Game " + Arrays.stream(currentlyBetterPlayer.split(" ")).toArray()[1];
+        return "Advantage " + Arrays.stream(currentlyBetterPlayer.split(" ")).toArray()[1];
     }
 
     private String findVerbalWhenScoresAreEqual(int score) {
