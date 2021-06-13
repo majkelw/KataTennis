@@ -1,10 +1,10 @@
-import org.graalvm.compiler.debug.Assertions;
-import org.junit.Assert;
+
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class SimplifiedTennisGameTest {
 

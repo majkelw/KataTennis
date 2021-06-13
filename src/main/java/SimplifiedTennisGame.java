@@ -27,7 +27,8 @@ public class SimplifiedTennisGame {
 
 
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
-
+        if(firstPlayerScore<0 || secondPlayerScore<0)
+            throw new IncorrectScore("Score can not be less than zero");
         if (firstPlayerScore == secondPlayerScore)
             verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
         else if (firstPlayerScore >= MIN_POINTS_WIN || secondPlayerScore >= MIN_POINTS_WIN)
