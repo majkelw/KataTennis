@@ -8,15 +8,15 @@ public class SimplifiedTennisGameTest {
 
     @Test
     public void scoreShouldBeLoveAll_atTheBeginningOfTheGame() {
-        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
-        assertThat(game.getCurrentScore(), equalTo("Love all"));
+        SimplifiedTennisGame game = new SimplifiedTennisGame();
+        assertThat(game.getVerbalScore(), equalTo("Love all"));
     }
 
     @Test
     public void scoreShouldBeFifteenZero() {
-        SimplifiedTennisGame game = new SimplifiedTennisGame("John Smith", "Andy Davis");
+        SimplifiedTennisGame game = new SimplifiedTennisGame();
         game.createScore(1, 0);
-        assertThat(game.getCurrentScore(), equalTo("Fifteen, Love"));
+        assertThat(game.getVerbalScore(), equalTo("Fifteen, Love"));
     }
 
 }

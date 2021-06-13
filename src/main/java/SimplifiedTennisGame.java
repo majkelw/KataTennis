@@ -1,21 +1,14 @@
 public class SimplifiedTennisGame {
 
-    private String firstPlayer;
-    private String secondPlayer;
-    private int firstPlayerScore;
-    private int secondPlayerScore;
-    private String currentScore;
+    public static final String INITIAL_VERBAL_SCORE = "Love all";
+    private String verbalScore;
 
-    public SimplifiedTennisGame(String firstPlayer, String secondPlayer) {
-        this.firstPlayer = firstPlayer;
-        this.secondPlayer = secondPlayer;
-        this.firstPlayerScore = 0;
-        this.secondPlayerScore = 0;
-        currentScore = "Love all";
+    public SimplifiedTennisGame() {
+        verbalScore = INITIAL_VERBAL_SCORE;
     }
 
-    public String getCurrentScore() {
-        return currentScore;
+    public String getVerbalScore() {
+        return verbalScore;
     }
 
     private String findMatch(int score) {
@@ -29,12 +22,10 @@ public class SimplifiedTennisGame {
 
     public void createScore(int firstPlayerScore, int secondPlayerScore) {
 
-        this.firstPlayerScore = firstPlayerScore;
-        this.secondPlayerScore = secondPlayerScore;
         if (firstPlayerScore == 0 && secondPlayerScore == 0)
-            currentScore = "Love all";
+            verbalScore = INITIAL_VERBAL_SCORE;
         else {
-            currentScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
+            verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
         }
     }
 }
