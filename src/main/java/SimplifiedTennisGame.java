@@ -1,6 +1,7 @@
 public class SimplifiedTennisGame {
 
     public static final String INITIAL_VERBAL_SCORE = "Love all";
+    public static final String DEUCE = "Deuce";
     private String verbalScore;
 
     public SimplifiedTennisGame() {
@@ -31,11 +32,14 @@ public class SimplifiedTennisGame {
         if (firstPlayerScore == 0 && secondPlayerScore == 0)
             verbalScore = INITIAL_VERBAL_SCORE;
         else if (firstPlayerScore == secondPlayerScore) {
-            if (firstPlayerScore >= 3)
-                verbalScore = "Deuce";
-            else
-                verbalScore = findMatch(firstPlayerScore) + " all";
+            verbalScore = findVerbalWhenScoresAreEqual(firstPlayerScore);
         } else
             verbalScore = findMatch(firstPlayerScore) + ", " + findMatch(secondPlayerScore);
+    }
+
+    private String findVerbalWhenScoresAreEqual(int firstPlayerScore) {
+        if (firstPlayerScore >= 3)
+            return DEUCE;
+        return verbalScore = findMatch(firstPlayerScore) + " all";
     }
 }
